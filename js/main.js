@@ -1,4 +1,5 @@
 import { createTemporaryData } from './data';
+import { renderMiniatures } from './miniature';
 
 
-createTemporaryData();
+renderMiniatures(createTemporaryData());
