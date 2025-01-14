@@ -6,6 +6,7 @@ import { hideSlider, setCurrentEffect, updateImageFilter } from './effects.js';
 import { DEFAULT } from './effects-settings.js';
 import { sendData } from './api.js';
 import { showUploadSuccessMessage, showUploadErrorMessage } from './info-messages.js';
+import { setPicturePreview } from './picture-preview.js';
 
 const MIN_SCALE_VALUE = 25;
 const MAX_SCALE_VALUE = 100;
@@ -84,6 +85,7 @@ function closeEditor (clear = true) {
 
 const onImageUpload = () => {
   pristine.validate();
+  setPicturePreview(imageInputField, imagePreview);
   showEditor();
 };
 
