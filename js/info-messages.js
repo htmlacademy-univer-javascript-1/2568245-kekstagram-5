@@ -5,9 +5,14 @@ const serverErrorTemplate = document.querySelector('#server_error').content.quer
 const uploadErrorTemplate = document.querySelector('#error').content.querySelector('.error');
 const uploadSuccessTemplate = document.querySelector('#success').content.querySelector('.success');
 
+let messageIsOpen = false;
+
 
 const closeMessage = () => {
-  document.body.removeChild(document.body.lastChild);
+  if (messageIsOpen) {
+    document.body.removeChild(document.body.lastChild);
+    messageIsOpen = false;
+  }
 };
 
 const onErrorEscKeydown = (evt) => {
@@ -37,6 +42,7 @@ const onSuccessCloseClick = () => {
 const showServerErrorMessage = () => {
   const newMessage = serverErrorTemplate.cloneNode(true);
   document.body.insertAdjacentElement('beforeend', newMessage);
+  messageIsOpen = true;
 };
 
 const showUploadErrorMessage = () => {
@@ -52,6 +58,7 @@ const showUploadErrorMessage = () => {
   document.addEventListener('keydown', onErrorEscKeydown);
 
   document.body.insertAdjacentElement('beforeend', newMessage);
+  messageIsOpen = true;
 };
 
 const showUploadSuccessMessage = () => {
@@ -67,6 +74,7 @@ const showUploadSuccessMessage = () => {
   document.addEventListener('keydown', onSuccessEscKeydown);
 
   document.body.insertAdjacentElement('beforeend', newMessage);
+  messageIsOpen = true;
 };
 
 export {
