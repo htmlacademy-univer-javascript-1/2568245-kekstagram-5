@@ -1,5 +1,5 @@
 const imageUploadForm = document.querySelector('#upload-select-image');
-const uploadButton = document.querySelector('#upload-submit');
+const submitButton = document.querySelector('#upload-submit');
 
 const pristine = new Pristine(imageUploadForm, {
   classTo:'img-upload__field-wrapper',
@@ -10,9 +10,9 @@ const pristine = new Pristine(imageUploadForm, {
 
 const checkValidation = () => {
   if (!pristine.validate()) {
-    uploadButton.setAttribute('disabled', '');
+    submitButton.setAttribute('disabled', '');
   } else {
-    uploadButton.removeAttribute('disabled');
+    submitButton.removeAttribute('disabled');
   }
 };
 
