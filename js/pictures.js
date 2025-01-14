@@ -29,4 +29,9 @@ const renderPictures = (data) => {
   pictureList.appendChild(fragment);
 };
 
-export { renderPictures };
+const clearPictures = () => {
+  const pictures = document.querySelectorAll('.picture');
+  pictures.forEach((picture) => picture.remove());
+};
+
+export { renderPictures, clearPictures };
