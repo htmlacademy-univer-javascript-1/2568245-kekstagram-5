@@ -1,20 +1,13 @@
-import { closeMessage, showServerErrorMessage, showUploadErrorMessage, showUploadSuccessMessage } from './info-messages.js';
-
-const getData = (renderPictures) => {
-  fetch('https://29.javascript.htmlacademy.pro/kekstagram/data')
-    .then((response) => {
-      closeMessage();
-      return response.json();
-    })
-    .then((data) => renderPictures(data))
-    .catch(() => showServerErrorMessage());
-};
+const getData = () => fetch('https://29.javascript.htmlacademy.pro/kekstagram/data')
+  .then((response) => response.json())
+  .then((data) => Promise.resolve(data))
+  .catch(() => Promise.reject());
 
 const sendData = (evt) => {
   evt.preventDefault();
   const formData = new FormData(evt.target);
 
-  fetch(
+  return fetch(
     'https://29.javascript.htmlacademy.pro/kekstagram',
     {
       method: 'POST',
@@ -22,14 +15,11 @@ const sendData = (evt) => {
     })
     .then((response) => {
       if (response.ok) {
-        showUploadSuccessMessage();
-      } else {
-        throw new Error();
+        return Promise.resolve;
       }
+      throw new Error();
     })
-    .catch(() => {
-      showUploadErrorMessage();
-    });
+    .catch(() => Promise.reject());
 };
 
 export { getData, sendData };
